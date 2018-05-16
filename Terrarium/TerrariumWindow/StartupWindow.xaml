@@ -1,0 +1,56 @@
+﻿<Window x:Class="TerrariumWindow.StartupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TerrariumWindow"
+        mc:Ignorable="d"
+        Title="Terrarium" Height="auto" Width="auto" Closing="Window_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <DockPanel>
+        <Menu Name="MenuBalk" DockPanel.Dock="Top" Height="24">
+            <MenuItem Header="File" FontSize="12">
+                <MenuItem Name="MenuNewTerrarium" Header="New" Click="MenuNewTerrarium_Click"></MenuItem>
+                <MenuItem Name="MenuReset" Header="_Reset" Click="ButtonReset_Click"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Name="MenuClose" Header="_Close" Click="MenuClose_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Name="MenuTheme" Header="Thema" FontSize="12">
+                <MenuItem Name="ForestTheme" Header="Forest" IsCheckable="True" IsChecked="True" Click="Theme_Click"></MenuItem>
+                <MenuItem Name="PokemonTheme" Header="Pokemon" IsCheckable="True" Click="Theme_Click"></MenuItem>
+                <MenuItem Name="JungleTheme" Header="Jungle" IsCheckable="True" Click="Theme_Click"></MenuItem>
+                <MenuItem Name="OceanTheme" Header="Ocean" IsCheckable="True" Click="Theme_Click"></MenuItem>
+                <MenuItem Name="RoboticTheme" Header="Robotic" IsCheckable="True" Click="Theme_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBar DockPanel.Dock="Top" Height="35"  HorizontalAlignment="Stretch">
+            <Button Name="ButtonNextDay" Content="Next Day" ToolTip="Shows the next day"
+                        Margin="10 0" Width="auto" Height="auto" MinHeight="20" MinWidth="20" Click="ButtonNextDay_Click"></Button>
+            <StackPanel>
+                <Border Margin="10 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontSize="12" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="Show day n°" />
+                        <Button Name="Button_MinMinDay" Click="Button_MinPlusDay_Click" Content="&lt;&lt;"></Button>
+                        <Button Name="Button_MinDay" Click="Button_MinPlusDay_Click" Content="&lt;"></Button>
+                        <Label x:Name="Label_DayNumber" Width="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                        <Button Name="Button_PlusDay" Click="Button_MinPlusDay_Click" Content="&gt;"></Button>
+                        <Button Name="Button_PlusPlusDay" Click="Button_MinPlusDay_Click" Content="&gt;&gt;"></Button>
+                        <Button Name="Button_GoToDay" Margin="10,0" Click="Button_GoToDay_Click">GO</Button>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Button Name="ButtonReset" Content="Reset" BorderBrush="Black" BorderThickness="1" ToolTip="Resets the grid to day 1"
+                    Width="auto" Height="auto" MinHeight="20" MinWidth="20" HorizontalAlignment="Right" Margin="10 0" Click="ButtonReset_Click"></Button>
+            <ComboBox Name="ComboBoxSkipDays" Width="100"></ComboBox>
+            <Button Name="ButtonSkip" Content="Skip"  ToolTip="Fast forward 100 days"
+                    Width="auto" Height="auto" MinHeight="20" MinWidth="20" HorizontalAlignment="Right" Margin="10 0" Click="ButtonSkip_Click"></Button>
+            <ComboBox Name="ComboBoxMenuStyle" Width="150" Margin="10 0 0 0" SelectionChanged="ComboBoxMenuStyle_SelectionChanged" Visibility="Hidden" ></ComboBox>
+        </ToolBar>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label FontWeight="Bold">Day :</Label>
+            <Label FontWeight="Bold" Name="LabelDayCounter"></Label>
+        </StackPanel>
+        <Grid Name="Terrarium" Margin="10" PreviewMouseLeftButtonDown="Terrarium_PreviewMouseLeftButtonDown">
+        </Grid>
+    </DockPanel>
+</Window>
